@@ -15,7 +15,7 @@ export default function Hero() {
       >
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></span>
         <span className="text-xs font-semibold text-slate-600 tracking-widest uppercase">
-          Exclusive Focus: Family Law
+          Designed for Family Law Firms
         </span>
       </motion.div>
       
@@ -25,8 +25,8 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="text-[44px] md:text-[76px] lg:text-[88px] font-bold text-black tracking-[-0.04em] leading-[1.05] mb-8 max-w-[1000px]"
       >
-        Never Miss Another <br className="hidden md:block" />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-500 to-slate-900">Potential Client Call.</span>
+        Don&apos;t Lose Family Law <br className="hidden md:block" />
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-500 to-slate-900">Clients to Missed Calls.</span>
       </motion.h1>
       
       <motion.p 
@@ -35,7 +35,7 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="text-[18px] md:text-[22px] text-slate-500 leading-relaxed font-light max-w-[700px] mb-12"
       >
-        An elegant intake system that captures, structures, and qualifies leads 24/7. Intelligent filtering so your legal team only invests time in high-value cases.
+        CaseCapture helps family law firms answer, screen, and document inbound calls when staff is unavailable or after hours.
       </motion.p>
       
       <motion.div 
@@ -49,7 +49,7 @@ export default function Hero() {
           Book a Call
         </a>
         <a href="#demo" className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white border border-black/10 text-black font-medium rounded-full hover:bg-slate-50 transition-all text-[16px]">
-          View Interactive Demo
+          See How It Works
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>
       </motion.div>

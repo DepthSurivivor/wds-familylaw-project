@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 
 export default function HowItWorks() {
   const steps = [
-    { label: "01", title: "Inbound Call", desc: "The client contacts the firm seeking family legal advice." },
-    { label: "02", title: "Smart Filtering", desc: "The system answers immediately, performing controlled intake without emotions or detours." },
-    { label: "03", title: "Clean File", desc: "You instantly receive a case summary, urgent factors, and financial viability." }
+    { label: "01", title: "Call Comes In", desc: "A prospective client contacts your family law firm by phone." },
+    { label: "02", title: "System Engages", desc: "CaseCapture helps answer the call and screen the inquiry based on your firm&apos;s intake criteria." },
+    { label: "03", title: "Team Receives Context", desc: "Your staff receives documented details and next steps so they can review and follow up faster." }
   ];
 
   const [parsingState, setParsingState] = useState<'processing' | 'done'>('processing');
@@ -36,10 +36,10 @@ export default function HowItWorks() {
         <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-20 items-center relative z-10">
           <div className="lg:w-1/2">
             <h2 className="text-[40px] md:text-[56px] font-bold tracking-[-0.03em] mb-6 leading-tight">
-              Flawless Intake Engineering.
+              Built to Support Intake Teams.
             </h2>
             <p className="text-[20px] text-zinc-400 font-light leading-relaxed mb-12 max-w-[500px]">
-              We transform messy calls into structured files. Precise decisions in seconds.
+              Designed around real family law workflows to help answer, screen, and document inbound calls more consistently.
             </p>
             
             <div className="flex flex-col gap-10">
@@ -109,12 +109,12 @@ export default function HowItWorks() {
                       transition={{ duration: 0.5 }}
                       className="absolute inset-0 font-mono text-[14px] md:text-[15px] leading-relaxed md:leading-[1.8]"
                     >
-                      <div className="text-emerald-400 mb-4">{`// CASE_EXTRACTED_SUCCESSFULLY`}</div>
+                      <div className="text-emerald-400 mb-4">{`// INTAKE_DOCUMENTED_SUCCESSFULLY`}</div>
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
                         <span className="text-purple-400">"case_type"</span>: <span className="text-amber-300">"Divorce"</span>,
                       </motion.div>
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
-                        <span className="text-purple-400">"urgency"</span>: <span className="text-amber-300">"High"</span>,
+                        <span className="text-purple-400">"urgency"</span>: <span className="text-amber-300">"Priority Follow-Up"</span>,
                       </motion.div>
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
                         <span className="text-purple-400">"assets_involved"</span>: <span className="text-blue-300">true</span>,
@@ -123,7 +123,7 @@ export default function HowItWorks() {
                         <span className="text-purple-400">"children"</span>: <span className="text-emerald-300">2</span>,
                       </motion.div>
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
-                        <span className="text-purple-400">"conflict_level"</span>: <span className="text-amber-300">"Severe"</span>
+                        <span className="text-purple-400">"next_step"</span>: <span className="text-amber-300">"Staff callback requested"</span>
                       </motion.div>
                     </motion.div>
                   )}
