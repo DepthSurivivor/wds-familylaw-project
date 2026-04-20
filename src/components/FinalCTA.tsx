@@ -1,19 +1,21 @@
 import { motion } from 'motion/react';
 import { CalendarDays, CheckCircle, Loader2 } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ValidationError, useForm } from '@formspree/react';
 
 export default function FinalCTA() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [state, submitToFormspree] = useForm('xpqklydp');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate an API call to a booking/scheduling engine
-    setTimeout(() => {
-      setIsSubmitting(false);
+  useEffect(() => {
+    if (state.succeeded) {
       setIsSuccess(true);
-    }, 1500);
+    }
+  }, [state.succeeded]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await submitToFormspree(e);
   };
 
   return (
@@ -50,28 +52,39 @@ export default function FinalCTA() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-[13px] font-medium text-slate-700">First Name</label>
-                    <input required type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="John" />
+                    <input required name="firstName" type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="John" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[13px] font-medium text-slate-700">Last Name</label>
-                    <input required type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="Doe" />
+                    <input required name="lastName" type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="Doe" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[13px] font-medium text-slate-700">Work Email</label>
-                  <input required type="email" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="john@lawfirm.com" />
+                  <input required name="email" type="email" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="john@lawfirm.com" />
+                  <ValidationError
+                    prefix="Email"
+                    field="email"
+                    errors={state.errors}
+                    className="text-[13px] text-red-600"
+                  />
                 </div>
                  <div className="space-y-2">
                   <label className="text-[13px] font-medium text-slate-700">Law Firm Name</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="Doe Legal Group" />
+                  <input required name="lawFirmName" type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="Doe Legal Group" />
                 </div>
+                {state.errors && state.errors.length > 0 && !state.submitting && !state.succeeded ? (
+                  <p className="text-[13px] text-red-600 text-center">
+                    Something went wrong while submitting your request. Please try again.
+                  </p>
+                ) : null}
                 
                 <button 
                   type="submit" 
-                  disabled={isSubmitting}
+                  disabled={state.submitting}
                   className="w-full bg-black text-white py-4 rounded-xl font-medium text-[16px] hover:bg-zinc-800 transition-all shadow-xl hover:shadow-black/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                 >
-                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Request Demo Walkthrough"}
+                  {state.submitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Request Demo Walkthrough"}
                 </button>
                 <p className="text-[12px] text-center text-slate-400 mt-4">Built to support your team&apos;s workflow. CaseCapture does not provide legal advice.</p>
               </form>
