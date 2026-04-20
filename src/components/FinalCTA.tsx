@@ -2,10 +2,22 @@ import { motion } from 'motion/react';
 import { CalendarDays, CheckCircle, Loader2 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { ValidationError, useForm } from '@formspree/react';
+import type { PlanValue } from './Pricing';
 
-export default function FinalCTA() {
+type FinalCTAProps = {
+  selectedPlan: PlanValue | null;
+};
+
+const PLAN_LABELS: Record<PlanValue, string> = {
+  starter: 'Starter',
+  growth: 'Growth',
+  pro: 'Pro',
+};
+
+export default function FinalCTA({ selectedPlan }: FinalCTAProps) {
   const [state, submitToFormspree] = useForm('xpqklydp');
   const [isSuccess, setIsSuccess] = useState(false);
+  const selectedPlanLabel = selectedPlan ? PLAN_LABELS[selectedPlan] : 'Not specified';
 
   useEffect(() => {
     if (state.succeeded) {
@@ -49,6 +61,14 @@ export default function FinalCTA() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5 max-w-[500px] mx-auto relative z-10">
+                <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 px-4 py-3">
+                  <p className="text-[12px] uppercase tracking-wider text-slate-500">Selected Plan</p>
+                  <p className="text-[15px] font-medium text-slate-700 mt-1">Selected Plan: {selectedPlanLabel}</p>
+                  <p className="text-[12px] text-slate-500 mt-1">You can change this during the call</p>
+                </div>
+
+                <input type="hidden" name="selectedPlan" value={selectedPlanLabel} />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-[13px] font-medium text-slate-700">First Name</label>

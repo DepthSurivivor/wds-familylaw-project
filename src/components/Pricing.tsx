@@ -1,9 +1,12 @@
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 
+export type PlanValue = 'starter' | 'growth' | 'pro';
+
 const plans = [
   {
     name: 'Starter',
+    value: 'starter' as PlanValue,
     price: '$399',
     tagline: 'Never miss a lead again',
     features: [
@@ -22,6 +25,7 @@ const plans = [
   },
   {
     name: 'Growth',
+    value: 'growth' as PlanValue,
     price: '$599',
     tagline: 'Organized, structured, ready to act',
     badge: 'Most Popular',
@@ -43,6 +47,7 @@ const plans = [
   },
   {
     name: 'Pro',
+    value: 'pro' as PlanValue,
     price: '$899',
     tagline: 'Intake that thinks for your team',
     features: [
@@ -62,7 +67,11 @@ const plans = [
   },
 ];
 
-export default function Pricing() {
+type PricingProps = {
+  onSelectPlan: (plan: PlanValue) => void;
+};
+
+export default function Pricing({ onSelectPlan }: PricingProps) {
   return (
     <section className="py-24 px-6 bg-[#FAFAFA]">
       <div className="max-w-[1200px] mx-auto">
@@ -117,6 +126,7 @@ export default function Pricing() {
 
               <a
                 href="#book"
+                onClick={() => onSelectPlan(plan.value)}
                 className={`block text-center w-full py-3.5 rounded-full font-semibold text-[15px] transition-colors shadow-sm hover:shadow-md ${plan.buttonClass}`}
               >
                 Start 3-Day Free Trial
