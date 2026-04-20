@@ -17,7 +17,8 @@ const PLAN_LABELS: Record<PlanValue, string> = {
 export default function FinalCTA({ selectedPlan }: FinalCTAProps) {
   const [state, submitToFormspree] = useForm('xpqklydp');
   const [isSuccess, setIsSuccess] = useState(false);
-  const selectedPlanLabel = selectedPlan ? PLAN_LABELS[selectedPlan] : 'Not specified';
+  const selectedPlanLabel = selectedPlan ? PLAN_LABELS[selectedPlan] : null;
+  const selectedPlanValue = selectedPlan ?? 'exploring_options';
 
   useEffect(() => {
     if (state.succeeded) {
@@ -61,13 +62,14 @@ export default function FinalCTA({ selectedPlan }: FinalCTAProps) {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5 max-w-[500px] mx-auto relative z-10">
-                <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 px-4 py-3">
-                  <p className="text-[12px] uppercase tracking-wider text-slate-500">Selected Plan</p>
-                  <p className="text-[15px] font-medium text-slate-700 mt-1">Selected Plan: {selectedPlanLabel}</p>
-                  <p className="text-[12px] text-slate-500 mt-1">You can change this during the call</p>
-                </div>
+                {selectedPlanLabel ? (
+                  <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 px-4 py-3">
+                    <p className="text-[15px] font-medium text-slate-700">Interested in: {selectedPlanLabel}</p>
+                    <p className="text-[12px] text-slate-500 mt-1">You can change this during the call</p>
+                  </div>
+                ) : null}
 
-                <input type="hidden" name="selectedPlan" value={selectedPlanLabel} />
+                <input type="hidden" name="selectedPlan" value={selectedPlanValue} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
