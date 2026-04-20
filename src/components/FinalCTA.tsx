@@ -42,7 +42,7 @@ export default function FinalCTA() {
                   See CaseCapture in Action
                 </h2>
                 <p className="text-[16px] text-slate-500 font-light max-w-[500px] mx-auto relative z-10 leading-relaxed">
-                  Book a short walkthrough to hear how CaseCapture helps answer, screen, and document inbound family law calls based on your intake criteria.
+                  Book a short walkthrough to see how CaseCapture helps answer, screen, and document inbound family law calls based on your firm&apos;s intake criteria.
                 </p>
               </div>
 

@@ -104,7 +104,7 @@ export default function DemoSection() {
                         <span>Submitting sample inquiry...</span>
                       </>
                     ) : (
-                      "Generate Intake Record"
+                      "Generate Intake Summary"
                     )}
                   </motion.button>
                 </form>
@@ -139,7 +139,7 @@ export default function DemoSection() {
                       <CheckCircle2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="text-[20px] font-semibold text-black tracking-tight">Inquiry Documented</h3>
+                      <h3 className="text-[20px] font-semibold text-black tracking-tight">Call Documented</h3>
                       <p className="text-slate-500 text-[13px] font-mono mt-0.5">ID: FL-INTAKE-{Math.floor(Math.random() * 10000)}</p>
                     </div>
                   </div>
@@ -154,7 +154,7 @@ export default function DemoSection() {
                 <div className="bg-[#1E1E1E] rounded-2xl p-6 md:p-8 font-mono text-[13px] leading-[1.6] overflow-x-auto shadow-inner border border-black/10">
                   <div className="text-emerald-400 mb-4">{`// DOCUMENTED_INTAKE_DATA`}</div>
                   <div className="text-slate-300">
-                    <span className="text-purple-400">"status"</span>: <span className="text-amber-300">"Ready for Staff Review"</span>,<br/>
+                    <span className="text-purple-400">"status"</span>: <span className="text-amber-300">"Ready for Review"</span>,<br/>
                     <span className="text-purple-400">"caller_name"</span>: <span className="text-green-300">"{formData.name}"</span>,<br/>
                     <span className="text-purple-400">"phone_number"</span>: <span className="text-green-300">"{formData.phone}"</span>,<br/>
                     <span className="text-purple-400">"case_category"</span>: <span className="text-green-300">"Family Law - Initial Intake"</span>,<br/>

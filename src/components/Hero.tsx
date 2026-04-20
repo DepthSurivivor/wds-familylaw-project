@@ -26,7 +26,7 @@ export default function Hero() {
         className="text-[44px] md:text-[76px] lg:text-[88px] font-bold text-black tracking-[-0.04em] leading-[1.05] mb-8 max-w-[1000px]"
       >
         Don&apos;t Lose Family Law <br className="hidden md:block" />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-500 to-slate-900">Clients to Missed Calls.</span>
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-500 to-slate-900">Potential Clients to Missed Calls.</span>
       </motion.h1>
       
       <motion.p 
@@ -35,7 +35,7 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="text-[18px] md:text-[22px] text-slate-500 leading-relaxed font-light max-w-[700px] mb-12"
       >
-        CaseCapture helps family law firms answer, screen, and document inbound calls when staff is unavailable or after hours.
+        CaseCapture helps family law firms answer, screen, and document inbound calls when staff is unavailable, busy, or after hours.
       </motion.p>
       
       <motion.div 
