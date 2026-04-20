@@ -27,7 +27,7 @@ export default function PainPoints() {
       <div className="max-w-[1200px] mx-auto relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">Where Family Law Intake Breaks Down</h2>
-          <p className="text-[18px] text-slate-500 font-light">CaseCapture helps your team capture more opportunities when calls are missed.</p>
+          <p className="text-[18px] text-slate-500 font-light">CaseCapture helps your team capture more potential client inquiries when calls are missed.</p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
