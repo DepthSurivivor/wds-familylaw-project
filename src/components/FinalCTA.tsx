@@ -39,10 +39,10 @@ export default function FinalCTA() {
                 </div>
                 
                 <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4 leading-tight relative z-10">
-                  Book Your Live Demo
+                  See CaseCapture in Action
                 </h2>
                 <p className="text-[16px] text-slate-500 font-light max-w-[500px] mx-auto relative z-10 leading-relaxed">
-                  Lock in 15 minutes on our calendar. We'll show you exactly how this intake architecture will eliminate lead leakage this week.
+                  Book a short walkthrough to hear how CaseCapture helps answer, screen, and document inbound family law calls based on your intake criteria.
                 </p>
               </div>
 
@@ -71,9 +71,9 @@ export default function FinalCTA() {
                   disabled={isSubmitting}
                   className="w-full bg-black text-white py-4 rounded-xl font-medium text-[16px] hover:bg-zinc-800 transition-all shadow-xl hover:shadow-black/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                 >
-                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Confirm Demo Request"}
+                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Request Demo Walkthrough"}
                 </button>
-                <p className="text-[12px] text-center text-slate-400 mt-4">By booking, you agree to our Terms of Service. No credit card required.</p>
+                <p className="text-[12px] text-center text-slate-400 mt-4">Built to support your team&apos;s workflow. CaseCapture does not provide legal advice.</p>
               </form>
             </>
           ) : (
@@ -88,8 +88,8 @@ export default function FinalCTA() {
               <h2 className="text-[36px] md:text-[40px] font-bold text-black tracking-[-0.03em] mb-4 leading-tight">
                 Demo Requested
               </h2>
-              <p className="text-[16px] text-slate-500 font-light max-w-[400px] mx-auto leading-relaxed mb-8">
-                Your request has been securely processed. Our intake team will contact you shortly to confirm the preferred time for your interactive walkthrough.
+                <p className="text-[16px] text-slate-500 font-light max-w-[400px] mx-auto leading-relaxed mb-8">
+                Your request has been received. Our team will follow up shortly to confirm a time and walk through your family law intake workflow.
               </p>
               <button 
                 onClick={() => setIsSuccess(false)} 

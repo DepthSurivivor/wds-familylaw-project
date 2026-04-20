@@ -6,9 +6,9 @@ export default function Pricing() {
     <section className="py-32 px-6 bg-[#FAFAFA]">
       <div className="max-w-[1000px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">Investment & Return</h2>
+          <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">Why Family Law Firms Use CaseCapture</h2>
           <p className="text-[18px] text-slate-500 font-light max-w-[500px] mx-auto">
-            The system pays for itself by closing just one additional case that would have been lost due to a lack of timely response.
+            Improve intake coverage, documentation, and follow-up consistency without changing how your team practices law.
           </p>
         </div>
         
@@ -25,7 +25,7 @@ export default function Pricing() {
             3-Day Free Trial
           </div>
           
-          <div className="text-zinc-400 text-[14px] font-semibold mb-6 uppercase tracking-widest mt-4">Professional Plan</div>
+          <div className="text-zinc-400 text-[14px] font-semibold mb-6 uppercase tracking-widest mt-4">CaseCapture for Family Law</div>
           <div className="flex items-end gap-2 mb-10">
             <div className="text-[72px] font-bold leading-none tracking-tight">$599</div>
             <div className="text-zinc-400 font-medium pb-2 text-[18px]">/ month</div>
@@ -33,10 +33,10 @@ export default function Pricing() {
           
           <ul className="space-y-5 mb-12">
             {[
-              '24/7 Structured Intake', 
-              'Instant Call Transcripts', 
-              'Automatic Key Data Extraction', 
-              'Tailored for Family Law'
+              'More consistent intake coverage', 
+              'Better documentation for staff handoff', 
+              'Fewer missed opportunities from unanswered calls', 
+              'Professional first response when staff cannot answer immediately'
             ].map((feature, i) => (
               <li key={i} className="flex gap-4 items-start text-zinc-300 font-light text-[16px] leading-relaxed">
                 <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
@@ -46,7 +46,7 @@ export default function Pricing() {
           </ul>
           
           <a href="#book" className="block text-center w-full bg-white text-black py-4 rounded-full font-semibold text-[16px] hover:bg-zinc-200 transition-colors shadow-lg hover:shadow-xl">
-            Start Implementation
+            See How It Works
           </a>
         </motion.div>
       </div>

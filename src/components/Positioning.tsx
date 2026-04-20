@@ -8,7 +8,7 @@ export default function Positioning() {
          <span className="text-[13px] text-zinc-500 font-bold uppercase tracking-widest shrink-0">Ethical Notice</span>
          <div className="hidden md:block w-1 h-1 bg-zinc-300 rounded-full mx-2" />
          <span className="text-[13px] text-zinc-500 font-medium leading-relaxed max-w-[500px]">
-           This system classifies operational and administrative information; it does <strong className="font-bold text-zinc-700">not</strong> provide direct legal advice or replace an attorney.
+           CaseCapture is built to support intake workflow by organizing inbound inquiry details. It does <strong className="font-bold text-zinc-700">not</strong> provide legal advice or replace your attorneys and staff.
          </span>
       </div>
     </section>

@@ -5,18 +5,18 @@ export default function PainPoints() {
   const pains = [
     {
       icon: <PhoneMissed className="w-6 h-6 text-red-500" />,
-      title: "Response Speed",
-      desc: "Prospects contact multiple firms simultaneously. They hire the first one to respond in a professional and structured manner."
+      title: "Time-Sensitive Calls",
+      desc: "Family law prospects are often stressed, uncertain, and ready to talk now. If no one answers, many move on to the next firm."
     },
     {
       icon: <Clock className="w-6 h-6 text-amber-500" />,
-      title: "After-Hours Loss",
-      desc: "Reception staff is inconsistent, overwhelmed during peak hours, and rarely available during late nights or weekends."
+      title: "After-Hours Gaps",
+      desc: "When staff is unavailable during evenings, weekends, or active matter hours, unanswered calls can become missed opportunities."
     },
     {
       icon: <TrendingDown className="w-6 h-6 text-zinc-500" />,
-      title: "Lack of Qualification",
-      desc: "Your expert legal team wastes dozens of hours monthly filtering incomplete calls or prospects without the necessary funds."
+      title: "Inconsistent Follow-Up",
+      desc: "Voicemail and manual note-taking create friction, and incomplete intake details can slow down review and follow-up."
     }
   ];
 
@@ -26,8 +26,8 @@ export default function PainPoints() {
       
       <div className="max-w-[1200px] mx-auto relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">The Cost of Inaction</h2>
-          <p className="text-[18px] text-slate-500 font-light">The traditional intake method leaks potential revenue every single day.</p>
+          <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">Where Family Law Intake Breaks Down</h2>
+          <p className="text-[18px] text-slate-500 font-light">CaseCapture helps your team capture more opportunities when calls are missed.</p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
