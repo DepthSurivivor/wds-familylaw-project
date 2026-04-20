@@ -1,54 +1,133 @@
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 
+const plans = [
+  {
+    name: 'Starter',
+    price: '$399',
+    tagline: 'Never miss a lead again',
+    features: [
+      'Captures inbound calls 24/7',
+      'Sends caller details instantly',
+      'Basic message summary',
+      'Email notifications',
+    ],
+    outcome: 'You’ll always know who called — but your team still does the work',
+    cardClass: 'bg-white border border-zinc-200 text-zinc-900',
+    taglineClass: 'text-zinc-500',
+    featureTextClass: 'text-zinc-600',
+    checkClass: 'text-zinc-800',
+    buttonClass: 'bg-black text-white hover:bg-zinc-800',
+    outcomeClass: 'text-zinc-700',
+  },
+  {
+    name: 'Growth',
+    price: '$599',
+    tagline: 'Organized, structured, ready to act',
+    badge: 'Most Popular',
+    features: [
+      'Everything in Starter',
+      'Structured intake summaries',
+      'Matter type + urgency detection',
+      'Key details extracted automatically',
+      'Staff-ready formatted emails',
+    ],
+    outcome: 'Your team doesn’t just see the lead — they understand it immediately',
+    cardClass:
+      'bg-black text-white border border-black shadow-[0_24px_70px_-20px_rgba(0,0,0,0.45)] ring-2 ring-emerald-300/70 scale-[1.02] md:scale-105',
+    taglineClass: 'text-zinc-300',
+    featureTextClass: 'text-zinc-200',
+    checkClass: 'text-emerald-300',
+    buttonClass: 'bg-white text-black hover:bg-zinc-200',
+    outcomeClass: 'text-emerald-200',
+  },
+  {
+    name: 'Pro',
+    price: '$899',
+    tagline: 'Intake that thinks for your team',
+    features: [
+      'Everything in Growth',
+      'Lead prioritization & scoring',
+      'Recommended next steps',
+      'Staff guidance / response direction',
+      'High-value lead identification',
+    ],
+    outcome: 'Your team responds faster, smarter, and with better outcomes',
+    cardClass: 'bg-zinc-900 text-white border border-zinc-700 shadow-[0_18px_50px_-20px_rgba(0,0,0,0.5)]',
+    taglineClass: 'text-zinc-300',
+    featureTextClass: 'text-zinc-200',
+    checkClass: 'text-amber-300',
+    buttonClass: 'bg-amber-300 text-zinc-900 hover:bg-amber-200',
+    outcomeClass: 'text-amber-100',
+  },
+];
+
 export default function Pricing() {
   return (
-    <section className="py-32 px-6 bg-[#FAFAFA]">
-      <div className="max-w-[1000px] mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-[36px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">Why Family Law Firms Use CaseCapture</h2>
-          <p className="text-[18px] text-slate-500 font-light max-w-[500px] mx-auto">
-            Improve intake coverage, documentation, and follow-up consistency without changing how your team practices law.
+    <section className="py-24 px-6 bg-[#FAFAFA]">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="text-center mb-14">
+          <h2 className="text-[34px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">
+            Choose How You Handle Your Intake
+          </h2>
+          <p className="text-[18px] text-slate-500 font-light max-w-[760px] mx-auto">
+            From simple lead capture to fully structured, staff-ready intake — scale as your firm grows.
           </p>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-[480px] mx-auto bg-black text-white rounded-[40px] p-10 md:p-12 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] isolate"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch"
         >
-          {/* Subtle top glare inside the black box */}
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-20" />
-          
-          <div className="absolute top-0 right-10 bg-white text-black text-[11px] font-bold px-4 py-2 rounded-b-xl uppercase tracking-widest">
-            3-Day Free Trial
-          </div>
-          
-          <div className="text-zinc-400 text-[14px] font-semibold mb-6 uppercase tracking-widest mt-4">CaseCapture for Family Law</div>
-          <div className="flex items-end gap-2 mb-10">
-            <div className="text-[72px] font-bold leading-none tracking-tight">$599</div>
-            <div className="text-zinc-400 font-medium pb-2 text-[18px]">/ month</div>
-          </div>
-          
-          <ul className="space-y-5 mb-12">
-            {[
-              'More consistent intake coverage', 
-              'Better documentation for staff handoff', 
-              'Fewer missed opportunities from unanswered calls', 
-              'Professional first response when staff cannot answer immediately'
-            ].map((feature, i) => (
-              <li key={i} className="flex gap-4 items-start text-zinc-300 font-light text-[16px] leading-relaxed">
-                <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
-                {feature}
-              </li>
-            ))}
-          </ul>
-          
-          <a href="#book" className="block text-center w-full bg-white text-black py-4 rounded-full font-semibold text-[16px] hover:bg-zinc-200 transition-colors shadow-lg hover:shadow-xl">
-            See How It Works
-          </a>
+          {plans.map((plan) => (
+            <article
+              key={plan.name}
+              className={`rounded-[32px] p-8 md:p-9 relative flex flex-col ${plan.cardClass}`}
+            >
+              {plan.badge && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-300 text-black text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md">
+                  {plan.badge}
+                </div>
+              )}
+
+              <div className="mb-5">
+                <h3 className="text-[28px] font-bold tracking-tight">{plan.name}</h3>
+                <p className={`text-[15px] mt-2 ${plan.taglineClass}`}>{plan.tagline}</p>
+              </div>
+
+              <div className="flex items-end gap-2 mb-7">
+                <div className="text-[54px] font-bold leading-none tracking-tight">{plan.price}</div>
+                <div className={`font-medium pb-1.5 text-[16px] ${plan.taglineClass}`}>/ mo</div>
+              </div>
+
+              <ul className="space-y-3.5 mb-8">
+                {plan.features.map((feature) => (
+                  <li key={feature} className={`flex gap-3 items-start text-[15px] leading-relaxed ${plan.featureTextClass}`}>
+                    <Check className={`w-4.5 h-4.5 flex-shrink-0 mt-1 ${plan.checkClass}`} />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className={`text-[15px] leading-relaxed font-medium mt-auto mb-8 pt-5 border-t border-white/10 ${plan.outcomeClass}`}>
+                {plan.outcome}
+              </p>
+
+              <a
+                href="#book"
+                className={`block text-center w-full py-3.5 rounded-full font-semibold text-[15px] transition-colors shadow-sm hover:shadow-md ${plan.buttonClass}`}
+              >
+                Start 3-Day Free Trial
+              </a>
+            </article>
+          ))}
         </motion.div>
+
+        <p className="text-center text-sm text-zinc-500 mt-9">
+          All plans include a 3-day free trial. No setup fees. Cancel anytime.
+        </p>
       </div>
     </section>
   );
