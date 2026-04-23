@@ -39,6 +39,7 @@ type ScenarioConfig = {
   audioSrc: string;
   durationLabel: string;
   finalBadge: string;
+  finalBadgeTone?: 'positive' | 'neutral';
   events: ScenarioEvent[];
 };
 
@@ -64,7 +65,7 @@ const SCENARIOS: ScenarioConfig[] = [
     shortDescription:
       'Caller provides complete details, confirms no current attorney, and presents a time-sensitive custody concern suitable for staff follow-up.',
     audioSrc: '/audio/scenario-1.mp3',
-    durationLabel: '2:11',
+    durationLabel: '02:59',
     finalBadge: 'Ready for Staff Follow-Up',
     events: [
       { time: 1.0, type: 'signal', label: 'Call connected', status: 'listening' },
@@ -122,7 +123,7 @@ const SCENARIOS: ScenarioConfig[] = [
     shortDescription:
       'Caller is unsure how to proceed, describes rising tension with an unmarried co-parent, and is routed to a consultation for guidance before the situation worsens.',
     audioSrc: '/audio/scenario-2.mp3',
-    durationLabel: '4:21',
+    durationLabel: '04:09',
     finalBadge: 'Ready for Staff Follow-Up',
     events: [
       { time: 1.0, type: 'signal', label: 'Caller uncertainty detected', status: 'listening' },
@@ -188,8 +189,9 @@ const SCENARIOS: ScenarioConfig[] = [
     shortDescription:
       'Caller already has an attorney and is politely redirected to existing counsel instead of being routed through standard intake.',
     audioSrc: '/audio/scenario-3.mp3',
-    durationLabel: '0:25',
+    durationLabel: '00:24',
     finalBadge: 'Not Routed for Intake',
+    finalBadgeTone: 'neutral',
     events: [
       { time: 1.0, type: 'signal', label: 'Caller indicates existing attorney', status: 'listening' },
       { time: 2.5, type: 'field', field: 'name', value: 'Not collected', label: 'Caller name intentionally not collected' },
@@ -238,15 +240,15 @@ const SCENARIOS: ScenarioConfig[] = [
 ];
 
 const FIELD_META: Array<{ key: DemoFieldKey; label: string; placeholder: string; longText?: boolean }> = [
-  { key: 'name', label: 'Caller Name', placeholder: 'Waiting for caller identity...' },
-  { key: 'phone', label: 'Phone', placeholder: 'Waiting for number capture...' },
-  { key: 'email', label: 'Email', placeholder: 'Waiting for email capture...' },
-  { key: 'matterType', label: 'Matter Type', placeholder: 'Analyzing legal matter...' },
-  { key: 'urgency', label: 'Urgency', placeholder: 'Assessing urgency level...' },
-  { key: 'representationStatus', label: 'Representation Status', placeholder: 'Checking representation status...' },
-  { key: 'notes', label: 'Context Summary', placeholder: 'Building structured call summary...', longText: true },
-  { key: 'nextStep', label: 'Recommended Next Step', placeholder: 'Preparing staff recommendation...', longText: true },
-  { key: 'status', label: 'Intake Status', placeholder: 'Final status pending...' },
+  { key: 'name', label: 'Caller Name', placeholder: 'Awaiting caller name' },
+  { key: 'phone', label: 'Phone', placeholder: 'Awaiting callback number' },
+  { key: 'email', label: 'Email', placeholder: 'Awaiting email address' },
+  { key: 'matterType', label: 'Matter Type', placeholder: 'Awaiting matter classification' },
+  { key: 'urgency', label: 'Urgency', placeholder: 'Awaiting urgency assessment' },
+  { key: 'representationStatus', label: 'Representation Status', placeholder: 'Awaiting representation status' },
+  { key: 'notes', label: 'Context Summary', placeholder: 'Summary pending', longText: true },
+  { key: 'nextStep', label: 'Recommended Next Step', placeholder: 'Recommendation pending', longText: true },
+  { key: 'status', label: 'Intake Status', placeholder: 'Disposition pending' },
 ];
 
 const STATUS_STYLES: Record<SystemStatus, string> = {
@@ -298,12 +300,12 @@ function StatusBadge({ status, isPlaying }: { status: SystemStatus; isPlaying: b
 function ExtractionFeed({ items }: { items: string[] }) {
   return (
     <div className="rounded-2xl border border-black/10 bg-white p-4">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Recent activity</p>
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Live activity</p>
       <div className="space-y-2">
         {items.length === 0 ? (
           <p className="text-sm text-slate-400">No extraction events yet.</p>
         ) : (
-          items.slice(0, 6).map((item, index) => (
+          items.slice(0, 4).map((item, index) => (
             <div
               key={`${item}-${index}`}
               className="flex items-start gap-2 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2 text-sm text-slate-700"
@@ -322,27 +324,45 @@ function LiveIntakeForm({
   values,
   highlightedField,
   finalBadge,
+  finalBadgeTone = 'positive',
   showFinalBadge,
+  status,
   progress,
 }: {
   values: FormState;
   highlightedField: DemoFieldKey | null;
   finalBadge: string;
+  finalBadgeTone?: 'positive' | 'neutral';
   showFinalBadge: boolean;
+  status: SystemStatus;
   progress: number;
 }) {
+  const statusCopy: Record<SystemStatus, string> = {
+    idle: 'Ready to start',
+    listening: 'Listening',
+    extracting: 'Extracting',
+    reviewing: 'Reviewing',
+    ready: 'Ready',
+  };
+
+  const finalBadgeStyles =
+    finalBadgeTone === 'neutral'
+      ? 'border-slate-200 bg-slate-100 text-slate-700'
+      : 'border-emerald-200 bg-emerald-50 text-emerald-700';
+
   return (
     <div className="rounded-3xl border border-black/10 bg-white p-5 md:p-6">
-      <div className="mb-5 flex items-center justify-between gap-4">
+      <div className="mb-4 flex items-center justify-between gap-4">
         <h3 className="text-lg font-semibold text-black">Live Intake Record</h3>
-        <span className="text-xs font-medium text-slate-500">Progress {progress}%</span>
+        <span className="text-xs font-medium text-slate-500">{statusCopy[status]}</span>
       </div>
 
-      <div className="mb-5 h-1.5 overflow-hidden rounded-full bg-slate-100">
-        <div className="h-full rounded-full bg-black transition-all duration-500" style={{ width: `${progress}%` }} />
+      <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-slate-100">
+        <div className="h-full rounded-full bg-slate-500 transition-all duration-500" style={{ width: `${progress}%` }} />
       </div>
+      <p className="mb-4 text-xs text-slate-500">{progress}% complete</p>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {FIELD_META.map((field) => {
           const hasValue = Boolean(values[field.key]);
           const isHighlighted = highlightedField === field.key;
@@ -350,7 +370,7 @@ function LiveIntakeForm({
           return (
             <div
               key={field.key}
-              className={`rounded-xl border px-3 py-3 transition-all duration-500 ${
+              className={`rounded-xl border px-3 py-2.5 transition-all duration-500 ${
                 hasValue ? 'border-slate-200 bg-slate-50' : 'border-slate-100 bg-white'
               } ${isHighlighted ? 'border-black/30 shadow-[0_0_0_2px_rgba(15,23,42,0.06)]' : ''}`}
             >
@@ -364,7 +384,7 @@ function LiveIntakeForm({
       </div>
 
       {showFinalBadge && (
-        <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+        <div className={`mt-4 rounded-xl border px-4 py-3 text-sm font-semibold ${finalBadgeStyles}`}>
           {finalBadge}
         </div>
       )}
@@ -511,7 +531,7 @@ export default function DemoSection() {
   };
 
   return (
-    <section id="demo" className="bg-[#FAFAFA] px-6 py-24">
+    <section id="demo" className="bg-[#FAFAFA] px-6 py-20">
       <div className="mx-auto max-w-[1100px]">
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-[36px] font-bold tracking-[-0.03em] text-black md:text-[48px]">
@@ -522,20 +542,20 @@ export default function DemoSection() {
           </p>
         </div>
 
-        <div className="mb-6 flex justify-center">
+        <div className="mb-4 flex justify-center">
           <ScenarioTabs scenarios={SCENARIOS} activeId={scenario.id} onChange={handleScenarioChange} />
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.25fr]">
           <div className="rounded-3xl border border-black/10 bg-white p-5 md:p-6">
-            <div className="mb-5 border-b border-black/5 pb-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Scenario</p>
-              <h3 className="mt-2 text-xl font-semibold text-black">{scenario.title}</h3>
+            <div className="mb-4 border-b border-black/5 pb-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Demo scenario</p>
+              <h3 className="mt-1.5 text-xl font-semibold text-black">{scenario.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{scenario.shortDescription}</p>
-              <p className="mt-3 text-xs font-medium text-slate-500">Recorded call length: {scenario.durationLabel}</p>
+              <p className="mt-2.5 text-xs font-medium text-slate-500">Call length: {scenario.durationLabel}</p>
             </div>
 
-            <div className="mb-5 flex flex-wrap items-center gap-3">
+            <div className="mb-4 flex flex-wrap items-center gap-2.5">
               <button
                 type="button"
                 onClick={handlePlayPause}
@@ -571,20 +591,22 @@ export default function DemoSection() {
               values={formData}
               highlightedField={highlightedField}
               finalBadge={scenario.finalBadge}
+              finalBadgeTone={scenario.finalBadgeTone}
               showFinalBadge={showFinalBadge}
+              status={status}
               progress={progress}
             />
 
             {showFinalBadge && (
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-center">
                 <a
                   href="#book"
                   className="inline-flex justify-center rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
                 >
-                  Book a Call
+                  Schedule Workflow Review
                 </a>
                 <a href="#contact" className="text-sm font-medium text-slate-700 underline-offset-4 hover:underline">
-                  See How This Works For Your Firm
+                  Review Intake Implementation Details
                 </a>
               </div>
             )}
