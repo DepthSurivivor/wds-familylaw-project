@@ -289,10 +289,20 @@ function ScenarioTabs({
 }
 
 function StatusBadge({ status, isPlaying }: { status: SystemStatus; isPlaying: boolean }) {
+  const statusLabel: Record<SystemStatus, string> = {
+    idle: 'Idle',
+    listening: 'Listening',
+    extracting: 'Extracting',
+    reviewing: 'Reviewing',
+    ready: 'Ready',
+  };
+
+  const isActiveStatus = isPlaying && (status === 'listening' || status === 'extracting' || status === 'reviewing');
+
   return (
-    <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide ${STATUS_STYLES[status]}`}>
-      <span className={`h-2 w-2 rounded-full ${status === 'ready' ? 'bg-emerald-500' : 'bg-current'} ${isPlaying && status === 'listening' ? 'animate-pulse' : ''}`} />
-      {status}
+    <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold tracking-wide ${STATUS_STYLES[status]}`}>
+      <span className={`h-2 w-2 rounded-full ${status === 'ready' ? 'bg-emerald-500' : 'bg-current'} ${isActiveStatus ? 'animate-pulse' : ''}`} />
+      {statusLabel[status]}
     </div>
   );
 }
@@ -409,6 +419,12 @@ export default function DemoSection() {
     [activeScenarioId],
   );
 
+  const finalSupportCopy: Record<string, string> = {
+    'qualified-intake': 'Intake complete. Ready for staff review and follow-up.',
+    'needs-guidance': 'Caller routed to consultation. Details prepared for review.',
+    'non-fit-filter': 'Caller properly redirected. No intake created.',
+  };
+
   const progress = useMemo(() => {
     const completed = KEY_PROGRESS_FIELDS.filter((key) => formData[key]).length;
     return Math.round((completed / KEY_PROGRESS_FIELDS.length) * 100);
@@ -451,12 +467,13 @@ export default function DemoSection() {
       resetPlaybackState();
     }
 
+    if (status === 'idle') {
+      setStatus('listening');
+    }
+
     try {
       await audio.play();
       setIsPlaying(true);
-      if (status === 'idle') {
-        setStatus('listening');
-      }
     } catch {
       setIsPlaying(false);
     }
@@ -549,10 +566,10 @@ export default function DemoSection() {
         <div className="grid gap-4 lg:grid-cols-[0.95fr_1.25fr]">
           <div className="rounded-3xl border border-black/10 bg-white p-5 md:p-6">
             <div className="mb-4 border-b border-black/5 pb-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Demo scenario</p>
-              <h3 className="mt-1.5 text-xl font-semibold text-black">{scenario.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{scenario.shortDescription}</p>
-              <p className="mt-2.5 text-xs font-medium text-slate-500">Call length: {scenario.durationLabel}</p>
+              <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">Demo scenario</p>
+              <h3 className="mt-1.5 text-xl font-bold text-slate-950">{scenario.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">{scenario.shortDescription}</p>
+              <p className="mt-2.5 text-xs font-medium text-slate-400">Call length: {scenario.durationLabel}</p>
             </div>
 
             <div className="mb-4 flex flex-wrap items-center gap-2.5">
@@ -572,6 +589,8 @@ export default function DemoSection() {
               </button>
               <StatusBadge status={status} isPlaying={isPlaying} />
             </div>
+
+            {showFinalBadge && <p className="mb-4 text-sm text-slate-600">{finalSupportCopy[scenario.id]}</p>}
 
             <audio
               ref={audioRef}
