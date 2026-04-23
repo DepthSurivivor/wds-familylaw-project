@@ -73,7 +73,7 @@ type PricingProps = {
 
 export default function Pricing({ onSelectPlan }: PricingProps) {
   return (
-    <section className="py-24 px-6 bg-[#FAFAFA]">
+    <section id="pricing" className="py-24 px-6 bg-[#FAFAFA]">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-[34px] md:text-[48px] font-bold text-black tracking-[-0.03em] mb-4">
@@ -129,7 +129,7 @@ export default function Pricing({ onSelectPlan }: PricingProps) {
                 onClick={() => onSelectPlan(plan.value)}
                 className={`block text-center w-full py-3.5 rounded-full font-semibold text-[15px] transition-colors shadow-sm hover:shadow-md ${plan.buttonClass}`}
               >
-                Start 3-Day Free Trial
+                Book a Call
               </a>
             </article>
           ))}

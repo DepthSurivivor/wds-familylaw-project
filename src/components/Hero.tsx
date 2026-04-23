@@ -48,7 +48,7 @@ export default function Hero() {
           <Calendar className="w-5 h-5" />
           Book a Call
         </a>
-        <a href="#demo" className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white border border-black/10 text-black font-medium rounded-full hover:bg-slate-50 transition-all text-[16px]">
+        <a href="#how-it-works" className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white border border-black/10 text-black font-medium rounded-full hover:bg-slate-50 transition-all text-[16px]">
           See How It Works
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>

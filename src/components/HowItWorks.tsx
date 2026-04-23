@@ -29,7 +29,7 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section className="py-24 px-6 md:px-10">
+    <section id="how-it-works" className="py-24 px-6 md:px-10">
       <div className="bg-black text-white rounded-[40px] md:rounded-[60px] py-24 px-8 md:px-16 overflow-hidden relative max-w-[1400px] mx-auto shadow-2xl">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         
