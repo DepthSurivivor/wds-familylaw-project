@@ -17,8 +17,14 @@ export default function Navbar() {
         </span>
       </div>
       <div className="flex items-center gap-6">
-        <a href="#demo" className="hidden md:block text-[14px] font-medium text-slate-500 hover:text-black transition-colors tracking-wide">
+        <a href="#how-it-works" className="hidden md:block text-[14px] font-medium text-slate-500 hover:text-black transition-colors tracking-wide">
+          See How It Works
+        </a>
+        <a href="#demo" className="hidden lg:block text-[14px] font-medium text-slate-500 hover:text-black transition-colors tracking-wide">
           Test the Demo
+        </a>
+        <a href="#pricing" className="hidden lg:block text-[14px] font-medium text-slate-500 hover:text-black transition-colors tracking-wide">
+          See Pricing
         </a>
         <a href="#book" className="bg-black hover:bg-zinc-800 text-white px-6 py-2.5 rounded-full font-medium text-[14px] transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5">
           Book a Call

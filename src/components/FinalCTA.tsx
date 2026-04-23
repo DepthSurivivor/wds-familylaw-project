@@ -19,6 +19,7 @@ export default function FinalCTA({ selectedPlan }: FinalCTAProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const selectedPlanLabel = selectedPlan ? PLAN_LABELS[selectedPlan] : null;
   const selectedPlanValue = selectedPlan ?? 'exploring_options';
+  const hasSubmissionErrors = Array.isArray(state.errors) && state.errors.length > 0;
 
   useEffect(() => {
     if (state.succeeded) {
@@ -95,7 +96,7 @@ export default function FinalCTA({ selectedPlan }: FinalCTAProps) {
                   <label className="text-[13px] font-medium text-slate-700">Law Firm Name</label>
                   <input required name="lawFirmName" type="text" className="w-full px-4 py-3 rounded-xl border border-black/10 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[15px]" placeholder="Doe Legal Group" />
                 </div>
-                {state.errors && state.errors.length > 0 && !state.submitting && !state.succeeded ? (
+                {hasSubmissionErrors && !state.submitting && !state.succeeded ? (
                   <p className="text-[13px] text-red-600 text-center">
                     Something went wrong while submitting your request. Please try again.
                   </p>

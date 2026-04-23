@@ -624,8 +624,8 @@ export default function DemoSection() {
                 >
                   Schedule Workflow Review
                 </a>
-                <a href="#contact" className="text-sm font-medium text-slate-700 underline-offset-4 hover:underline">
-                  Review Intake Implementation Details
+                <a href="#pricing" className="text-sm font-medium text-slate-700 underline-offset-4 hover:underline">
+                  See Pricing
                 </a>
               </div>
             )}
