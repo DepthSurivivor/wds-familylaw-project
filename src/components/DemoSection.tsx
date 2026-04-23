@@ -63,7 +63,7 @@ const SCENARIOS: ScenarioConfig[] = [
     title: 'Qualified Family-Law Intake',
     shortDescription:
       'Caller provides complete details, confirms no current attorney, and presents a time-sensitive custody concern suitable for staff follow-up.',
-    audioSrc: '/audio/qualified-intake-demo.mp3',
+    audioSrc: '/audio/scenario-1.mp3',
     durationLabel: '2:11',
     finalBadge: 'Ready for Staff Follow-Up',
     events: [
@@ -121,7 +121,7 @@ const SCENARIOS: ScenarioConfig[] = [
     title: 'Emotional Caller Guided to Consultation',
     shortDescription:
       'Caller is distressed and uncertain. The system captures available details, identifies emotional urgency, and routes for a guided callback.',
-    audioSrc: '/audio/needs-guidance-demo.mp3',
+    audioSrc: '/audio/scenario-2.mp3',
     durationLabel: '2:34',
     finalBadge: 'Ready for Staff Follow-Up',
     events: [
@@ -182,7 +182,7 @@ const SCENARIOS: ScenarioConfig[] = [
     title: 'Non-Fit Inquiry Filtered Cleanly',
     shortDescription:
       'Caller already has active legal representation. Intake is documented professionally and marked as non-routed to protect staff time.',
-    audioSrc: '/audio/non-fit-filter-demo.mp3',
+    audioSrc: '/audio/scenario-3.mp3',
     durationLabel: '1:56',
     finalBadge: 'Processed — Non-Fit, No Staff Follow-Up Needed',
     events: [
